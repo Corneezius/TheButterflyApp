@@ -68,6 +68,15 @@ export class IdeasPage {
           type: MessageType.TEXT
         }
       }
+
+      removeIdea(idea: Idea): void {
+        this.ideas = this.ideas.map<Idea[]>(ideasArray => {
+          const ideaIndex = ideasArray.indexOf(idea);
+          ideasArray.splice(ideaIndex, 1);
+
+          return ideasArray;
+        });
+      }
     ]);
   }
 }
