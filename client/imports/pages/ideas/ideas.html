@@ -1,11 +1,36 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="whatsapp">
     <ion-title>
       Ideas
     </ion-title>
+    <ion-buttons end>
+     <button ion-button icon-only class="add-idea-button">
+       <ion-icon name="person-add"></ion-icon>
+     </button>
+     <button ion-button icon-only class="options-button">
+       <ion-icon name="more"></ion-icon>
+     </button>
+ </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  Hello!
+<ion-content class="ideas-page-content">
+  <ion-list class="ideas">
+    <ion-item-sliding *ngFor="let idea of ideas | async">
+      <button ion-item class="idea">
+        <img class="idea-picture" [src]="idea.picture">
+        <div class="idea-info">
+          <h2 class="idea-title">{{idea.title}}</h2>
+
+          <span *ngIf="idea.lastMessage" class="last-message">
+            <p *ngIf="idea.lastMessage.type == 'text'" class="last-message-content last-message-content-text">{{idea.lastMessage.content}}</p>
+            <span class="last-message-timestamp">{{idea.lastMessage.createdAt }}</span>
+          </span>
+        </div>
+      </button>
+      <ion-item-options class="idea-options">
+        <button ion-button color="danger" class="option option-remove">Remove</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
