@@ -14,7 +14,7 @@ export class IdeasPage {
     this.ideas = this.findIdeas();
   }
 
-  private findChats(): Observable<any[]> {
+  private findIdeas(): Observable<any[]> {
     return Observable.of([
       {
         _id: '0',
