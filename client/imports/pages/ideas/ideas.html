@@ -24,7 +24,7 @@
 
           <span *ngIf="idea.lastMessage" class="last-message">
             <p *ngIf="idea.lastMessage.type == 'text'" class="last-message-content last-message-content-text">{{idea.lastMessage.content}}</p>
-            <span class="last-message-timestamp">{{idea.lastMessage.createdAt }}</span>
+            <span class="last-message-timestamp">{{idea.lastMessage.createdAt | amCalendar }}</span>
           </span>
         </div>
       </button>
