@@ -12,6 +12,7 @@ export class MessagesPage implements OnInit {
 
   constructor(navParams: NavParams) {
     this.selectedIdea = <Idea>navParams.get('idea');
+    
     this.title = this.selectedIdea.title;
     this.picture = this.selectedIdea.picture;
 
