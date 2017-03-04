@@ -7,7 +7,6 @@ import template from './ideas.html';
 @Component({
   template
 })
-
 export class IdeasPage {
   ideas: Observable<Idea[]>;
 
@@ -35,7 +34,6 @@ export class IdeasPage {
           content: 'Hey, it\'s me',
           createdAt: Moment().subtract(2, 'hours').toDate(),
           type: MessageType.TEXT
-
         }
       },
       {
@@ -70,10 +68,11 @@ export class IdeasPage {
       }
     ]);
   }
-  removeIdea(idea: Idea): void {
+
+  removeIdea(chat: Idea): void {
     this.ideas = this.ideas.map<Idea[]>(ideasArray => {
-      const ideaIndex = ideasArray.indexOf(idea);
-      ideasArray.splice(ideaIndex, 1);
+      const chatIndex = ideasArray.indexOf(chat);
+      ideasArray.splice(chatIndex, 1);
 
       return ideasArray;
     });
