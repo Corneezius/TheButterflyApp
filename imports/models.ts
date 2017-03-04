@@ -14,5 +14,6 @@ export interface Message {
   ideaId?: string;
   content?: string;
   createdAt?: Date;
+  ownership?: string;
   type?: MessageType
 }
