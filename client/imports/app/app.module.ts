@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MomentModule } from 'angular2-moment';
+import { MessagesPage } from '../pages/messages/messages';
 import { IdeasPage } from '../pages/ideas/ideas'
 
 import { MyApp } from './app.component';
@@ -8,7 +9,8 @@ import { MyApp } from './app.component';
 @NgModule({
   declarations: [
     MyApp,
-    IdeasPage
+    IdeasPage,
+    MessagesPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -17,7 +19,8 @@ import { MyApp } from './app.component';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    IdeasPage
+    IdeasPage,
+    MessagesPage
   ],
 
   providers: [
