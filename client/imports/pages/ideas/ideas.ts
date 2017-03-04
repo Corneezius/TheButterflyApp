@@ -69,10 +69,10 @@ export class IdeasPage {
     ]);
   }
 
-  removeIdea(chat: Idea): void {
+  removeIdea(idea: Idea): void {
     this.ideas = this.ideas.map<Idea[]>(ideasArray => {
-      const chatIndex = ideasArray.indexOf(chat);
-      ideasArray.splice(chatIndex, 1);
+      const ideaIndex = ideasArray.indexOf(idea);
+      ideasArray.splice(ideaIndex, 1);
 
       return ideasArray;
     });
