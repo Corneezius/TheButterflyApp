@@ -17,7 +17,7 @@
 <ion-content class="ideas-page-content">
   <ion-list class="ideas">
     <ion-item-sliding *ngFor="let idea of ideas | async">
-      <button ion-item class="idea">
+      <button ion-item class="idea" (click)="showMessages(idea)">>
         <img class="idea-picture" [src]="idea.picture">
         <div class="idea-info">
           <h2 class="idea-title">{{idea.title}}</h2>
