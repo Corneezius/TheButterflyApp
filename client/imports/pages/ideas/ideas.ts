@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import * as Moment from 'moment';
 import { Observable } from 'rxjs';
+import { NavController, PopoverController } from 'ionic-angular';
 import { Ideas, Messages } from '../../../../imports/collections';
 import { Idea, MessageType } from '../../../../imports/models';
+import { IdeasOptionsComponent } from './ideas-options';
 import { MessagesPage } from '../messages/messages';
 import template from './ideas.html';
 
@@ -13,7 +14,9 @@ import template from './ideas.html';
 export class IdeasPage implements OnInit {
   ideas;
 
-  constructor(private navCtrl: NavController) {
+  constructor(
+    private navCtrl: NavController,
+    private popoverCtrl: PopoverController) {
   }
 
   ngOnInit() {
@@ -32,6 +35,14 @@ export class IdeasPage implements OnInit {
         )
       )
     ).zone();
+}
+
+showOptions(): void {
+  const popover = this.popoverCtrl.create(IdeasOptionsComponent, {}, {
+    cssClass: 'options-popover chats-options-popover'
+  });
+
+  popover.present();
 }
 
 showMessages(idea): void {
