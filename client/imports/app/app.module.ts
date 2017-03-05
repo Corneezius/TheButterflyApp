@@ -4,7 +4,7 @@ import { MomentModule } from 'angular2-moment';
 import { MessagesPage } from '../pages/messages/messages';
 import { IdeasPage } from '../pages/ideas/ideas';
 import { ProfilePage } from '../pages/profile/profile';
-import { IdeasOptionsComponent } from '../pages/chats/chats-options';
+// import { IdeasOptionsComponent } from '../pages/ideas/ideas-options';
 import { VerificationPage } from '../pages/verification/verification';
 import { LoginPage } from '../pages/login/login';
 import { PhoneService } from '../services/phone';
@@ -18,7 +18,7 @@ import { MyApp } from './app.component';
     LoginPage,
     VerificationPage,
     ProfilePage,
-    IdeasOptionsComponent
+    // IdeasOptionsComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -32,7 +32,7 @@ import { MyApp } from './app.component';
     LoginPage,
     VerificationPage,
     ProfilePage,
-    IdeasOptionsComponent
+    // IdeasOptionsComponent
   ],
 
   providers: [
