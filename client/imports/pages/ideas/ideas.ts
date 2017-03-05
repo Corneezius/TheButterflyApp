@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import * as Moment from 'moment';
 import { Observable } from 'rxjs';
-import { NavController } from 'ionic-angular';
+import { NavController, PopoverController } from 'ionic-angular';
 import { Ideas, Messages } from '../../../../imports/collections';
 import { Idea, MessageType } from '../../../../imports/models';
-// import { IdeasOptionsComponent } from './ideas-options';
+import { IdeasOptionsComponent } from './ideas-options';
 import { MessagesPage } from '../messages/messages';
 import template from './ideas.html';
 
@@ -15,8 +15,9 @@ export class IdeasPage implements OnInit {
   ideas;
 
   constructor(
-    private navCtrl: NavController) {
-  }
+   private navCtrl: NavController,
+   private popoverCtrl: PopoverController) {
+ }
 
   ngOnInit() {
   this.ideas = Ideas
