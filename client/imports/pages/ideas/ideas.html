@@ -18,9 +18,9 @@
   <ion-list class="ideas">
     <ion-item-sliding *ngFor="let idea of ideas | async">
       <button ion-item class="idea" (click)="showMessages(idea)">>
-        <img class="idea-picture" [src]="idea.picture">
+        <h2 class="idea-title">{{idea.title}}</h2>
+        <!-- <img class="idea-picture" [src]="idea.picture"> -->
         <div class="idea-info">
-          <h2 class="idea-title">{{idea.title}}</h2>
 
           <span *ngIf="idea.lastMessage" class="last-message">
             <p *ngIf="idea.lastMessage.type == 'text'" class="last-message-content last-message-content-text">{{idea.lastMessage.content}}</p>

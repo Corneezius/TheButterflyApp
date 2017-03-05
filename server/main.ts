@@ -8,7 +8,7 @@ Meteor.startup(() => {
     let ideaId;
 
     ideaId = Ideas.collection.insert({
-      title: 'Ethan Gonzalez',
+      title: 'Push a button and a gorilla comes',
       picture: 'https://randomuser.me/api/portraits/thumb/men/1.jpg'
     });
 
@@ -20,7 +20,7 @@ Meteor.startup(() => {
     });
 
     ideaId = Ideas.collection.insert({
-      title: 'Bryan Wallace',
+      title: 'An anthology about faith authored by a million people',
       picture: 'https://randomuser.me/api/portraits/thumb/lego/1.jpg'
     });
 
@@ -32,7 +32,7 @@ Meteor.startup(() => {
     });
 
     ideaId = Ideas.collection.insert({
-      title: 'Avery Stewart',
+      title: 'Send insults to your friends',
       picture: 'https://randomuser.me/api/portraits/thumb/women/1.jpg'
     });
 
@@ -44,7 +44,7 @@ Meteor.startup(() => {
     });
 
     ideaId = Ideas.collection.insert({
-      title: 'Katie Peterson',
+      title: 'Car sharing for black people: black rides matter',
       picture: 'https://randomuser.me/api/portraits/thumb/women/2.jpg'
     });
 
@@ -56,7 +56,7 @@ Meteor.startup(() => {
     });
 
     ideaId = Ideas.collection.insert({
-      title: 'Ray Edwards',
+      title: 'Marketplace for renting babies',
       picture: 'https://randomuser.me/api/portraits/thumb/men/2.jpg'
     });
 
