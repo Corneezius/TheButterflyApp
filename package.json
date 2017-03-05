@@ -3,7 +3,6 @@
   "private": true,
   "scripts": {
     "start": "meteor run --settings private/settings.json"
-
   },
   "dependencies": {
     "@angular/common": "^2.4.7",
