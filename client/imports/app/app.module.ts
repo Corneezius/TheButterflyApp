@@ -3,6 +3,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MomentModule } from 'angular2-moment';
 import { MessagesPage } from '../pages/messages/messages';
 import { IdeasPage } from '../pages/ideas/ideas';
+import { ProfilePage } from '../pages/profile/profile';
 import { VerificationPage } from '../pages/verification/verification';
 import { LoginPage } from '../pages/login/login';
 import { PhoneService } from '../services/phone';
@@ -14,7 +15,8 @@ import { MyApp } from './app.component';
     IdeasPage,
     MessagesPage,
     LoginPage,
-    VerificationPage
+    VerificationPage,
+    ProfilePage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -26,7 +28,8 @@ import { MyApp } from './app.component';
     IdeasPage,
     MessagesPage,
     LoginPage,
-    VerificationPage
+    VerificationPage,
+    ProfilePage
   ],
 
   providers: [
