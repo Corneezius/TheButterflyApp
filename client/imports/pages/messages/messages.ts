@@ -20,6 +20,7 @@ export class MessagesPage implements OnInit, OnDestroy {
  message: string = '';
  autoScroller: MutationObserver;
  scrollOffset = 0;
+ senderId: string;
 
 
  constructor(
@@ -30,6 +31,7 @@ export class MessagesPage implements OnInit, OnDestroy {
 
     this.title = this.selectedIdea.title;
     this.picture = this.selectedIdea.picture;
+    this.senderId = Meteor.userId();
 
     console.log('Selected idea is: ', this.selectedIdea);
   }
@@ -87,7 +89,7 @@ findMessagesDayGroups() {
 
       // Compose missing data that we would like to show in the view
       messages.forEach((message) => {
-        message.ownership = isEven ? 'mine' : 'other';
+       message.ownership = this.senderId == message.senderId ? 'mine' : 'other';
         isEven = !isEven;
 
         return message;
