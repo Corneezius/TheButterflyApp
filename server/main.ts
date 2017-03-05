@@ -1,9 +1,15 @@
+import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
 import * as Moment from 'moment';
 import { Ideas, Messages } from '../imports/collections';
 import { MessageType } from '../imports/models';
 
 Meteor.startup(() => {
+  if (Meteor.settings) {
+   Object.assign(Accounts._options, Meteor.settings['accounts-phone']);
+   SMS.twilio = Meteor.settings['twilio'];
+ }
+ 
   if (Ideas.find({}).cursor.count() === 0) {
     let ideaId;
 
