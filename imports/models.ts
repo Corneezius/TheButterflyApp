@@ -20,6 +20,7 @@ export interface Idea {
 export interface Message {
   _id?: string;
   ideaId?: string;
+  senderId?: string;
   content?: string;
   createdAt?: Date;
   ownership?: string;
