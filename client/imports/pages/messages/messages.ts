@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit, ElementRef } from '@angular/core';
 import { NavParams } from 'ionic-angular';
 import { MeteorObservable } from 'meteor-rxjs';
+import { _ } from 'meteor/underscore';
+import * as Moment from 'moment';
 import { Observable } from 'rxjs';
 import { Messages } from '../../../../imports/collections';
 import { Idea, Message, MessageType } from '../../../../imports/models';
@@ -13,6 +15,7 @@ export class MessagesPage implements OnInit, OnDestroy {
   selectedIdea: Idea;
   title: string;
  picture: string;
+ messagesDayGroups;
  messages: Observable<Message[]>;
  message: string = '';
  autoScroller: MutationObserver;
@@ -45,6 +48,7 @@ export class MessagesPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.autoScroller = this.autoScroll();
+    this.subscribeMessages();
 
     let isEven = false;
 
@@ -65,6 +69,47 @@ export class MessagesPage implements OnInit, OnDestroy {
     this.autoScroller.disconnect();
   }
 
+  subscribeMessages() {
+  this.scrollOffset = this.scroller.scrollHeight;
+  this.messagesDayGroups = this.findMessagesDayGroups();
+}
+
+findMessagesDayGroups() {
+  let isEven = false;
+
+  return Messages.find({
+    ideaId: this.selectedIdea._id
+  }, {
+    sort: { createdAt: 1 }
+  })
+    .map((messages: Message[]) => {
+      const format = 'D MMMM Y';
+
+      // Compose missing data that we would like to show in the view
+      messages.forEach((message) => {
+        message.ownership = isEven ? 'mine' : 'other';
+        isEven = !isEven;
+
+        return message;
+      });
+
+      // Group by creation day
+      const groupedMessages = _.groupBy(messages, (message) => {
+        return Moment(message.createdAt).format(format);
+      });
+
+      // Transform dictionary into an array since Angular's view engine doesn't know how
+      // to iterate through it
+      return Object.keys(groupedMessages).map((timestamp: string) => {
+        return {
+          timestamp: timestamp,
+          messages: groupedMessages[timestamp],
+          today: Moment().format(format) === timestamp
+        };
+      });
+    });
+}
+
   autoScroll(): MutationObserver {
     const autoScroller = new MutationObserver(this.scrollDown.bind(this));
 
@@ -82,7 +127,7 @@ export class MessagesPage implements OnInit, OnDestroy {
     // Zero offset for next invocation
     this.scrollOffset = 0;
   }
- 
+
   onInputKeypress({ keyCode }: KeyboardEvent): void {
     if (keyCode === 13) {
       this.sendTextMessage();
