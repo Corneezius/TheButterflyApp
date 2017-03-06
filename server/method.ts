@@ -9,6 +9,36 @@ const nonEmptyString = Match.Where((str) => {
 });
 
 Meteor.methods({
+  addIdea(receiverId: string): void {
+    if (!this.userId) {
+      throw new Meteor.Error('unauthorized',
+        'User must be logged-in to create a new chat');
+    }
+
+    check(receiverId, nonEmptyString);
+
+    if (receiverId === this.userId) {
+      throw new Meteor.Error('illegal-receiver',
+        'Receiver must be different than the current logged in user');
+    }
+
+    const ideaExists = !!Ideas.collection.find({
+      memberIds: { $all: [this.userId, receiverId] }
+    }).count();
+
+    if (ideaExists) {
+      throw new Meteor.Error('chat-exists',
+        'Chat already exists');
+    }
+
+    const idea = {
+      memberIds: [this.userId, receiverId]
+    };
+
+    Ideas.insert(idea);
+  },
+
+
   updateProfile(profile: Profile): void {
     if (!this.userId) throw new Meteor.Error('unauthorized',
       'User must be logged-in to create a new chat');
