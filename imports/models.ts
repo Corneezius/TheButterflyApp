@@ -30,5 +30,5 @@ export interface Message {
   content?: string;
   createdAt?: Date;
   ownership?: string;
-  type?: MessageType
+  type?: MessageType;
 }
