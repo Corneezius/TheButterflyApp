@@ -6,6 +6,7 @@ import { IdeasPage } from '../pages/ideas/ideas';
 import { ProfilePage } from '../pages/profile/profile';
 import { IdeasOptionsComponent } from '../pages/ideas/ideas-options';
 import { VerificationPage } from '../pages/verification/verification';
+import { NewIdeaComponent } from '../pages/ideas/new-idea';
 import { LoginPage } from '../pages/login/login';
 import { PhoneService } from '../services/phone';
 import { MyApp } from './app.component';
@@ -19,7 +20,8 @@ import { MyApp } from './app.component';
     LoginPage,
     VerificationPage,
     ProfilePage,
-    IdeasOptionsComponent
+    IdeasOptionsComponent,
+    NewIdeaComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -33,7 +35,8 @@ import { MyApp } from './app.component';
     LoginPage,
     VerificationPage,
     ProfilePage,
-    IdeasOptionsComponent
+    IdeasOptionsComponent,
+    NewIdeaComponent
   ],
 
   providers: [
