@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+
 export const DEFAULT_PICTURE_URL = '/assets/default-profile-pic.svg';
 
 export interface Profile {
@@ -5,6 +7,9 @@ export interface Profile {
   picture?: string;
 }
 
+export interface User extends Meteor.User {
+  profile?: Profile;
+}
 
 export enum MessageType {
   TEXT = <any>'text'
