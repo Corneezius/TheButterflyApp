@@ -20,6 +20,7 @@ export interface Idea {
   title?: string;
   picture?: string;
   lastMessage?: Message;
+  memberIds?: string[];
 }
 
 export interface Message {
