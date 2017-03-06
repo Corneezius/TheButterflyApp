@@ -5,12 +5,12 @@ import { _ } from 'meteor/underscore';
 import { Observable, Subscription } from 'rxjs';
 import { Ideas, Users } from '../../../../imports/collections';
 import { User } from '../../../../imports/models';
-import template from './new-chat.html';
+import template from './new-idea.html';
 
 @Component({
   template
 })
-export class NewChatComponent implements OnInit {
+export class NewIdeaComponent implements OnInit {
   senderId: string;
   users: Observable<User[]>;
   usersSubscription: Subscription;
