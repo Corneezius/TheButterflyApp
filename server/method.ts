@@ -27,8 +27,8 @@ Meteor.methods({
     }).count();
 
     if (ideaExists) {
-      throw new Meteor.Error('chat-exists',
-        'Chat already exists');
+      throw new Meteor.Error('idea-exists',
+        'Idea already exists');
     }
 
     const idea = {

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as Moment from 'moment';
 import { Observable, Subscriber } from 'rxjs';
-import { MeteorObservable } from 'meteor-rxjs';
 import { NavController, PopoverController, ModalController } from 'ionic-angular';
+import { MeteorObservable } from 'meteor-rxjs';
 import { Ideas, Messages, Users } from '../../../../imports/collections';
 import { Idea, MessageType, Message } from '../../../../imports/models';
 import { IdeasOptionsComponent } from './ideas-options';
@@ -26,15 +26,6 @@ export class IdeasPage implements OnInit {
 
   ngOnInit() {
   this.ideas = this.findIdeas();
-  }
-
-showOptions(): void {
-  const popover = this.popoverCtrl.create(IdeasOptionsComponent, {}, {
-    cssClass: 'options-popover chats-options-popover'
-  });
-
-
-  popover.present();
 }
 
 addIdea(): void {
@@ -42,38 +33,38 @@ addIdea(): void {
   modal.present();
 }
 
-findIdeas(): Observable<Chat[]> {
-  // Find chats and transform them
-  return Chats.find().map(chats => {
-    chats.forEach(chat => {
-      chat.title = '';
-      chat.picture = '';
+findIdeas(): Observable<Idea[]> {
+  // Find ideas and transform them
+  return Ideas.find().map(ideas => {
+    ideas.forEach(idea => {
+      idea.title = '';
+      idea.picture = '';
 
-      const receiverId = chat.memberIds.find(memberId => memberId !== this.senderId);
+      const receiverId = idea.memberIds.find(memberId => memberId !== this.senderId);
       const receiver = Users.findOne(receiverId);
 
       if (receiver) {
-        chat.title = receiver.profile.name;
-        chat.picture = receiver.profile.picture;
+        idea.title = receiver.profile.name;
+        idea.picture = receiver.profile.picture;
       }
 
       // This will make the last message reactive
-      this.findLastChatMessage(chat._id).subscribe((message) => {
-        chat.lastMessage = message;
+      this.findLastIdeaMessage(idea._id).subscribe((message) => {
+        idea.lastMessage = message;
       });
     });
 
-    return chats;
+    return ideas;
   });
 }
 
-findLastChatMessage(chatId: string): Observable<Message> {
+findLastIdeaMessage(ideaId: string): Observable<Message> {
   return Observable.create((observer: Subscriber<Message>) => {
-    const chatExists = () => !!Chats.findOne(chatId);
+    const ideaExists = () => !!Ideas.findOne(ideaId);
 
-    // Re-compute until chat is removed
-    MeteorObservable.autorun().takeWhile(chatExists).subscribe(() => {
-      Messages.find({ chatId }, {
+    // Re-compute until idea is removed
+    MeteorObservable.autorun().takeWhile(ideaExists).subscribe(() => {
+      Messages.find({ ideaId }, {
         sort: { createdAt: -1 }
       }).subscribe({
         next: (messages) => {
@@ -94,6 +85,15 @@ findLastChatMessage(chatId: string): Observable<Message> {
       });
     });
   });
+}
+
+showOptions(): void {
+  const popover = this.popoverCtrl.create(IdeasOptionsComponent, {}, {
+    cssClass: 'options-popover ideas-options-popover'
+  });
+
+
+  popover.present();
 }
 
 

@@ -54,7 +54,7 @@ export class NewIdeaComponent implements OnInit {
     })
     // Invoke merge-map with an empty array in case no chat found
     .startWith([])
-    .mergeMap((MSVideoPayload) => {
+    .mergeMap((ideas) => {
       // Get all userIDs who we're chatting with
       const receiverIds = _.chain(ideas)
         .pluck('memberIds')
